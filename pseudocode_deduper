@@ -1,0 +1,60 @@
+DEDUPER PSEUDOCODE
+
+LOCATION
+    /home/ano/bioinfo/Bi624/Deduper-Dremtz
+
+INPUT
+    SAM file
+
+OUTPUT
+    SAM file ###DRE: I think?
+
+GOAL
+    Remove all PCR duplicates from SAM file leaving only copy remaining in the SAM file
+
+PIPELINE OVERVIEW
+
+After reading in files, UMI list and opening a loop
+
+###Dre, is this the most efficient order?
+
+    1. IF Sequence matches or is a close match to an UMI (QNAME field) then don't return,    
+    DO return WANTED sequences
+
+    2 IF clipping happened (CIGAR str in bitwise flag #)
+        THEN ignore clipped sections and compare Position and Sequence from after clipped section    ###Dre: How do I do this?
+
+    3. IF Chromosome Name (SAM field 3, CHROMNAME) 
+                AND IF forward strand (SAM field 2)
+                        AND left most Position matches (SAM field 4, POS)
+                            AND sequence MATCHES
+                                THEN write a single sequence to new file
+
+                        OR reverse stranded (SAM field 4, POS)
+                            AND right most Position matches ###DRE how do I check for this?
+                                AND sequence MATCHES
+                                    THEN write a single sequence to new file
+
+    4. RETURN list that does not have any of the excluded sequences from above
+
+FUNCTIONS:
+
+Function 1: maybe write a function to grab just the fields we want from SAM
+    put these in to a dictionary with key as UMI
+
+Function 2: adjust position based off of clipping number
+
+Function 3: if reverse compliment, then account for indels
+maybe make this an addon to function 2
+
+UNIT TESTS:
+    /home/ano/bioinfo/Bi624/Deduper-Dremtz/unit_tests
+    #delete in unit test descriptions before running UT's
+
+    EXPECTED OUTPUT = 7 Lines
+    2 unmatched chromname same everything else
+    1 clipped file that matches another file but is clipped 2 spaces
+    1 matching fwd strand w/ same starting Positions
+    2 fwd compliment with different starting positions
+    1 rev compliments w/ same ending position and sequence
+    = 7 total lines
