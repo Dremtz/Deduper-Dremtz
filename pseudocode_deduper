@@ -11,8 +11,16 @@ OUTPUT
 
 GOAL
     Remove all PCR duplicates from SAM file leaving only copy remaining in the SAM file
+    
+SAM headers
+RNAME (col 3) -> chromosome
+POS (col 4) -> position
+FLAG (col 2) -> strandedness
+CIGAR (col 6) -> soft clipping
+QNAME (col 1) -> UMI
 
 PIPELINE OVERVIEW
+
 
 After reading in files, UMI list and opening a loop
 
