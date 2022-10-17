@@ -27,7 +27,7 @@ PIPELINE OVERVIEW
 After reading in files, UMI list and opening a loop
 
 BASH
-sort by position start. ###I think this will correctly sort reverse strands also but check
+sort by position start. ###I think this will correctly sort reverse strands also but check (use samtools for this?)
 
 PYTHON
 ###Dre, is this the most efficient order?
