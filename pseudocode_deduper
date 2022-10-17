@@ -26,6 +26,10 @@ PIPELINE OVERVIEW
 
 After reading in files, UMI list and opening a loop
 
+BASH
+sort by position start. ###I think this will correctly sort reverse strands also but check
+
+PYTHON
 ###Dre, is this the most efficient order?
 
     1. IF Sequence matches or is a close match to an UMI (QNAME field) then don't return,    
