@@ -6,9 +6,11 @@ LOCATION
 INPUT
     SAM file
 
-OUTPUT
-    SAM file ###DRE: I think?
-
+OUTPUT: all SAM files
+    if computational time
+    1. deduplicated
+    2. duplicates that were removed from output1
+    3. umatched/error UMIs
 GOAL
     Remove all PCR duplicates from SAM file leaving only copy remaining in the SAM file
     
